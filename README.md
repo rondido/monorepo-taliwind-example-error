@@ -10,6 +10,35 @@
 
 - component에서 직접적으로 사용하였을때는 tailwind와 Nextui가 정상적으로 작동하였지만 service repo에서 component를 불러와 사용하는 순간부터는 tailwind가 브라우저에서 적용되었다가 안되었다가 하는 현상 발생
 
+- service
+
+![Alt text](image-1.png)
+
+- component
+
+![Alt text](image-2.png)
+
+위 이미지 처럼 tailwind가 잘 적용되어 있지만 service repo에서는 적용되지 않는것을 볼 수 있다.
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    //핵심
+    "../component/src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+![Alt text](image-3.png)
+
+소스 탭을 통해 경로를 확인하고 tailwind.config.js에서 위와 같이 경로를 설정해줌으로써 해결할 수 있었다.
+
 ## 회고
 
 ### 1번
